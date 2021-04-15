@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {Ionicons} from '@expo/vector-icons'
 import * as Font from 'expo-font'
-import * as Asset from 'expo-asset'
+import {Asset} from 'expo-asset'
 import { StyleSheet, Text, View } from 'react-native';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,7 +22,9 @@ export default function App() {
       require("./assets/icon.png"),
       "https://pics.freeicons.io/uploads/icons/png/13533707011536298178-512.png",
     ];
-    const imagesPromises = imagesToLoad.map((image) => Asset.loadAsync(image));
+    const imagesPromises = imagesToLoad.map((image) => {
+      Asset.loadAsync(image)
+    });
 
     // Loading 데이터 반환
     return Promise.all(fontsPromises, imagesPromises);

@@ -8,9 +8,9 @@ import { Appearance } from "react-native";
 
 const Stack = createStackNavigator();
 export default function LoggedOutNav() {
-    const subscription = Appearance.addChangeListener(({colorScheme}) => {
-        console.log(colorScheme); 
-    })
+  const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+    console.log(colorScheme);
+  });
   return (
     <AppearanceProvider>
       <Stack.Navigator
@@ -19,13 +19,31 @@ export default function LoggedOutNav() {
           headerTintColor: "black",
         }}
       >
-        <Stack.Screen name="Welcome" component={Welcome} 
-            options={{
-                headerShown:false
-            }}
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{
+            headerShown: false,
+          }}
         />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="CreateAccount" component={CreateAccount} />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerTitle: false,
+            headerTintColor: "white",
+            headerTransparent: true,
+          }}
+        />
+        <Stack.Screen
+          name="CreateAccount"
+          component={CreateAccount}
+          options={{
+            headerTitle: false,
+            headerTintColor: "white",
+            headerTransparent: true,
+          }}
+        />
       </Stack.Navigator>
     </AppearanceProvider>
   );
