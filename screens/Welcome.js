@@ -2,8 +2,10 @@ import React from 'react'
 import {Text, View, TouchableOpacity, Image} from 'react-native'
 import styled from 'styled-components/native'
 import {colors} from '../color.js'
-import AuthButton from '../components/Auth/AuthButton.js';
-import AuthLayout from '../components/Auth/AutoLayout.js';
+import AuthButton from '../components/Auth/AuthButton';
+import AuthLayout from '../components/Auth/AuthLayout';
+
+import CreateAccount from './CreateAccount.js';
 
 const LoginLink = styled.Text`
     color:${colors.blue};
