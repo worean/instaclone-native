@@ -7,10 +7,13 @@ import {Asset} from 'expo-asset'
 import { StyleSheet, Text, View } from 'react-native';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { ApolloProvider, useReactiveVar } from '@apollo/client';
+import client, { isLogginedVar} from './apollo'
+import LoggedInNav from './navigators/LoggedInNav';
 export default function App() {
   const [loading, setLoading] = useState(true); // 초기 로딩상태 True
   const onFinish = () => setLoading(false);     // Loading이 끝나면, 로딩상태를 False로 바꾼다.
+  const isLoggined = useReactiveVar(isLogginedVar);
   const preload = () => {
 
     // Font, Icon 로딩
@@ -39,8 +42,10 @@ export default function App() {
     );
   }
   return (
-    <NavigationContainer>
-      <LoggedOutNav />
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        {isLoggined ? <LoggedInNav /> : <LoggedOutNav />}
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
