@@ -4,7 +4,7 @@ import AuthLayout from "../components/Auth/AuthLayout";
 import AuthButton from "../components/Auth/AuthButton";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
-import { isLogginedVar } from "../apollo";
+import { loggedInUser } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation login($userName: String!, $password: String!) {
@@ -24,14 +24,14 @@ export default function Login({ navigation, route }) {
     },
   });
   const passwordRef = useRef();
-  const onCompleted = (data) => {
+  const onCompleted = async (data) => {
     const {
       login: { ok, token },
     } = data;
     if (ok) {
       // Loggin 상태로 전환한다.
       console.log("Success!!");
-      isLogginedVar(true);
+      await loggedInUser(token);
     }
   };
   const [logInMutation, { loading }] = useMutation(LOGIN_MUTATION, {

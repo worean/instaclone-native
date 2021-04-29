@@ -8,14 +8,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoggedOutNav from './navigators/LoggedOutNav';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApolloProvider, useReactiveVar } from '@apollo/client';
-import client, { isLogginedVar} from './apollo'
+import client, { isLogginedVar, tokenVar} from './apollo'
 import LoggedInNav from './navigators/LoggedInNav';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function App() {
   const [loading, setLoading] = useState(true); // 초기 로딩상태 True
   const onFinish = () => setLoading(false);     // Loading이 끝나면, 로딩상태를 False로 바꾼다.
   const isLoggined = useReactiveVar(isLogginedVar);
-  const preload = () => {
 
+  const preloadAssets =() => {
+    
     // Font, Icon 로딩
     const fontsToLoad = [Ionicons.font];
     const fontsPromises = fontsToLoad.map((font) => Font.loadAsync(font));
@@ -29,8 +31,22 @@ export default function App() {
       Asset.loadAsync(image)
     });
 
+
+
+
     // Loading 데이터 반환
     return Promise.all(fontsPromises, imagesPromises);
+  }
+  const preload = () => {
+    // Token을 가져온다.
+    const loggedToken = await AsyncStorage.getItem("token");
+    if(loggedToken) {
+      // Token이 있다면 로그인 상태로 전환한다.
+      isLogginedVar(true);
+      tokenVar(loggedToken);
+    }
+    // Assets을 로드한다.
+    return preloadAssets();
   };
   if (loading) {
     return (
