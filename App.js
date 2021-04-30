@@ -37,14 +37,16 @@ export default function App() {
     // Loading 데이터 반환
     return Promise.all(fontsPromises, imagesPromises);
   }
-  const preload = () => {
+  const preload = async() => {
     // Token을 가져온다.
     const loggedToken = await AsyncStorage.getItem("token");
     if(loggedToken) {
       // Token이 있다면 로그인 상태로 전환한다.
       isLogginedVar(true);
       tokenVar(loggedToken);
+      console.log(loggedToken);
     }
+    console.log(isLoggined);
     // Assets을 로드한다.
     return preloadAssets();
   };
@@ -58,9 +60,10 @@ export default function App() {
     );
   }
   return (
+    
     <ApolloProvider client={client}>
       <NavigationContainer>
-        {isLoggined ? <LoggedInNav /> : <LoggedOutNav />}
+        {isLoggined == true ? <LoggedInNav /> : <LoggedOutNav />}
       </NavigationContainer>
     </ApolloProvider>
   );

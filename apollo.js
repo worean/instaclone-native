@@ -1,9 +1,8 @@
 import {ApolloClient, InMemoryCache, makeVar} from "@apollo/client"
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KnownFragmentNamesRule } from "graphql";
 
 // Apollo Client에서 사용가능한 변수 생성
-export const isLogginedVar = makeVar(KnownFragmentNamesRule);
+export const isLogginedVar = makeVar("false");
 
 // Request에서 매번 사용하기 위해서 변수로 저장
 export const tokenVar = makeVar("");
@@ -33,7 +32,7 @@ export const loggedInUser = async (token) => {
 
 
 const client = new ApolloClient({
-    uri:"http://localhost:4000/graphql",
+    uri:"http://192.168.200.134:4000/graphql",
     cache: new InMemoryCache()
 })
 export default client; 
