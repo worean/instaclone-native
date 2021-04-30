@@ -16,11 +16,11 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-export default function Login({ navigation, route }) {
+export default function Login({ route :{params} }) {
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: {
-      password: route.params?.password,
-      userName: route.params?.userName,
+      password: params?.password,
+      userName: params?.userName,
     },
   });
   const passwordRef = useRef();
@@ -55,19 +55,22 @@ export default function Login({ navigation, route }) {
     register("userName");
     register("password");
   }, [register]);
+
+  console.log(watch("userName"));
+  console.log(watch("password"));
   return (
     <AuthLayout>
       <TextInput
-        values={watch("userName")}
+        value={watch("userName")}
         placeholder="Username"
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         onSubmitEditing={() => onNext(passwordRef)}
         returnKeyType="next"
-        autoCapitalize={"none"}
+        autoCapitalize="none"
         onChangeText={(text) => setValue("userName", text)}
       />
       <TextInput
-        values={watch("password")}
+        value={watch("password")}
         ref={passwordRef}
         placeholder="Password"
         placeholderTextColor={"rgba(255,255,255,0.6)"}

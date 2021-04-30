@@ -93,6 +93,7 @@ export default function CreateAccount({ navigation }) {
         returnKeyType="next"
         onSubmitEditing={() => onNext(lastNameRef)}
         onChangeText={(text) => setValue("firstName", text)}
+        autoCapitalize="none"
       />
       <TextInput
         ref={lastNameRef}
@@ -100,6 +101,7 @@ export default function CreateAccount({ navigation }) {
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         onSubmitEditing={() => onNext(userNameRef)}
         returnKeyType="next"
+        autoCapitalize="none"
         onChangeText={(text) => setValue("lastName", text)}
       />
       <TextInput
@@ -109,6 +111,7 @@ export default function CreateAccount({ navigation }) {
         onSubmitEditing={() => onNext(emailRef)}
         onChangeText={(text) => setValue("userName", text)}
         returnKeyType="next"
+        autoCapitalize="none"
       />
       <TextInput
         ref={emailRef}
@@ -118,6 +121,7 @@ export default function CreateAccount({ navigation }) {
         onSubmitEditing={() => onNext(passwordRef)}
         onChangeText={(text) => setValue("email", text)}
         returnKeyType="next"
+        autoCapitalize="none"
       />
       <TextInput
         ref={passwordRef}
@@ -130,6 +134,7 @@ export default function CreateAccount({ navigation }) {
         returnKeyType="done"
         returnKeyLabel="join"
         lastOne={true}
+        autoCapitalize="none"
       />
       <AuthButton
         disabled={false}

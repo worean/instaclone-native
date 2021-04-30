@@ -16,7 +16,7 @@ export default function App() {
   const onFinish = () => setLoading(false);     // Loading이 끝나면, 로딩상태를 False로 바꾼다.
   const isLoggined = useReactiveVar(isLogginedVar);
 
-  const preloadAssets =() => {
+  const preloadAssets = () => {
     
     // Font, Icon 로딩
     const fontsToLoad = [Ionicons.font];
@@ -31,13 +31,10 @@ export default function App() {
       Asset.loadAsync(image)
     });
 
-
-
-
     // Loading 데이터 반환
     return Promise.all(fontsPromises, imagesPromises);
   }
-  const preload = async() => {
+  const preload = async () => {
     // Token을 가져온다.
     const loggedToken = await AsyncStorage.getItem("token");
     if(loggedToken) {
@@ -46,7 +43,6 @@ export default function App() {
       tokenVar(loggedToken);
       console.log(loggedToken);
     }
-    console.log(isLoggined);
     // Assets을 로드한다.
     return preloadAssets();
   };
@@ -63,7 +59,7 @@ export default function App() {
     
     <ApolloProvider client={client}>
       <NavigationContainer>
-        {isLoggined == true ? <LoggedInNav /> : <LoggedOutNav />}
+        {isLoggined === true ? <LoggedInNav /> : <LoggedOutNav />}
       </NavigationContainer>
     </ApolloProvider>
   );
