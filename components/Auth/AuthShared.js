@@ -7,6 +7,4 @@ export const TextInput = styled.TextInput`
   margin-bottom: ${(props) => (props.lastOne ? 20 : 9)}px;
   border-radius: 4px;
   color: white;
-  autoCapitalize:"none";
-  autoCorrect:"false";
 `;
