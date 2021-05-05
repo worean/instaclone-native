@@ -92,6 +92,7 @@ export default function CreateAccount({ navigation }) {
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         returnKeyType="next"
         onSubmitEditing={() => onNext(lastNameRef)}
+        autoCorrect={false}
         onChangeText={(text) => setValue("firstName", text)}
       />
       <TextInput
@@ -100,6 +101,7 @@ export default function CreateAccount({ navigation }) {
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         onSubmitEditing={() => onNext(userNameRef)}
         returnKeyType="next"
+        autoCorrect={false}
         onChangeText={(text) => setValue("lastName", text)}
       />
       <TextInput
@@ -108,6 +110,7 @@ export default function CreateAccount({ navigation }) {
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         onSubmitEditing={() => onNext(emailRef)}
         onChangeText={(text) => setValue("userName", text)}
+        autoCorrect={false}
         returnKeyType="next"
       />
       <TextInput
@@ -117,6 +120,7 @@ export default function CreateAccount({ navigation }) {
         keyboardType="email-address"
         onSubmitEditing={() => onNext(passwordRef)}
         onChangeText={(text) => setValue("email", text)}
+        autoCorrect={false}
         returnKeyType="next"
       />
       <TextInput
@@ -129,6 +133,7 @@ export default function CreateAccount({ navigation }) {
         onChangeText={(text) => setValue("password", text)}
         returnKeyType="done"
         returnKeyLabel="join"
+        autoCorrect={false}
         lastOne={true}
       />
       <AuthButton

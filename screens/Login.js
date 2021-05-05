@@ -66,7 +66,7 @@ export default function Login({ route :{params} }) {
         placeholderTextColor={"rgba(255,255,255,0.6)"}
         onSubmitEditing={() => onNext(passwordRef)}
         returnKeyType="next"
-        autoCapitalize="none"
+        autoCorrect={false}
         onChangeText={(text) => setValue("userName", text)}
       />
       <TextInput
@@ -80,6 +80,7 @@ export default function Login({ route :{params} }) {
         returnKeyType="done"
         returnKeyLabel="join"
         onChangeText={(text) => setValue("password", text)}
+        autoCorrect={false}
         lastOne={true}
       />
       <AuthButton
