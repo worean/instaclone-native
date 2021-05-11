@@ -45,7 +45,9 @@ export default function Feed({ navigation }) {
   };
   return (
     <ScreenLayout loading={loading}>
-      <FlatList
+      <FlatList   // Rendering 최적화 ScrollView
+        style={{width:"100%"}}
+        showsVerticalScrollIndicator={false}
         data={data?.seeFeed}
         keyExtractor={(photo) => "" + photo.id}
         renderItem={renderPhoto}
