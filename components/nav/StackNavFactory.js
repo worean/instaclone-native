@@ -7,6 +7,8 @@ import Notification from "../../screens/Notifications";
 import Photo from "../../screens/Photo";
 import Search from "../../screens/Search";
 import { Image } from "react-native";
+import Likes from "../../screens/Likes";
+import Comments from "../../screens/Comments";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +52,8 @@ export default function StackNavFactory({ screenName }) {
       ) : null}
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Photo" component={Photo} />
+      <Stack.Screen name="Likes" component={Likes} />
+      <Stack.Screen name="Comments" component={Comments} />
     </Stack.Navigator>
   );
 }
